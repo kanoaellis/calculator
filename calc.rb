@@ -1,16 +1,12 @@
 #! /usr/bin/ruby
 
 def calc
-	puts 'Simple Calculator\nEnter help for help\nEnter q to quit'
-
+	puts "Simple Calculator\nEnter q to quit"
+	n = 0
 	while true
 		print'>> '
 		str = gets.chomp.split(' ')
 		return if str[0] == 'q'
-		if str[0] == 'help'
-			puts 'Only supports one operation at a time:'
-			puts 'Addition: +\nSubtraction: -\nMultiplication: *\nDivision: /\nExponentation: **'
-		end
 
 		op1 = str[0].to_i
 		op2 = str[2].to_i
@@ -20,11 +16,19 @@ def calc
 		when :+ then puts op1 + op2
 		when :- then puts op1 - op2
 		when :* then puts op1 * op2
-		when :/ then puts op1 / op2
+		when :/
+			if op2 != 0
+				puts op1 / op2
+			else
+				puts 'Cannot divide by 0'
+			end
 		when :** then puts op1 ** op2
 		else
 			puts 'Invalid input'
 		end
+		n +=1
+		puts "Number of runs so far: #{n}"
+
 	end
 end
 
